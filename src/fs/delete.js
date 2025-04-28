@@ -1,5 +1,14 @@
+import { access, unlink } from "fs/promises";
+
+const SOURCE_PATH = "./src/fs/files/fileToRemove.txt";
+
 const remove = async () => {
-    // Write your code here 
+  try {
+    await access(SOURCE_PATH);
+    await unlink(SOURCE_PATH);
+  } catch (err) {
+    throw new Error("FS operation failed");
+  }
 };
 
 await remove();
